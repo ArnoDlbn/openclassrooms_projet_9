@@ -14,7 +14,7 @@ class TranslateService {
     static var translateSession = URLSession(configuration: .default)
     
     static func getTranslation(text: String, completionHandler: @escaping (Translation?, Error?) -> Void) {
-        let request = createTranslateRequest(text: text)
+        guard let request = createTranslateRequest(text: text) else { return }
 
         let task = translateSession.dataTask(with: request) {(data, response, error) in DispatchQueue.main.async {
                 guard error == nil else {
@@ -44,11 +44,12 @@ class TranslateService {
             task.resume()
         }
 
-    static func createTranslateRequest(text: String) -> URLRequest {
+    static func createTranslateRequest(text: String) -> URLRequest? {
+        guard let apiKey = ApiKeyExtractor().apiKey else { return nil }
         var request = URLRequest(url: translateUrl)
         request.httpMethod = "POST"
         let q = text
-        let body = "q=\(q)" + "&source=fr" + "&target=en" + "&format=text" + ""
+        let body = "q=\(q)" + "&source=fr" + "&target=en" + "&format=text" + "&key=\(apiKey.apiTranslate)"
         request.httpBody = body.data(using: .utf8)
 
         return request

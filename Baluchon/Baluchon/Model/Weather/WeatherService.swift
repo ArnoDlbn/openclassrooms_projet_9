@@ -13,8 +13,9 @@ class WeatherService {
     static var weatherSession = URLSession(configuration: .default)
     
     static func getWeather(city: String, completionHandler: @escaping (CityWeather?, Error?) -> Void) {
+        guard let apiKey = ApiKeyExtractor().apiKey else { return }
         let encodedCity = city.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
-        let request = URL(string: "https://api.openweathermap.org/data/2.5/weather?q=\(encodedCity!)&units=metric")!
+        let request = URL(string: "https://api.openweathermap.org/data/2.5/weather?q=\(encodedCity!)&units=metric&appid=\(apiKey.apiWeather)")!
         
         let task = weatherSession.dataTask(with: request) {(data, response, error) in DispatchQueue.main.async {
             guard error == nil else {

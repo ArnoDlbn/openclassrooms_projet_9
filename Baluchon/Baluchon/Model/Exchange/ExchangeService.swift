@@ -12,7 +12,9 @@ class ExchangeService {
     
     static func getExchange(completionHandler: @escaping (ExchangeRate?, Error?) -> Void) {
         
-        let request = URL(string: "http://data.fixer.io/api/latest?")!
+        guard let apiKey = ApiKeyExtractor().apiKey else { return }
+        
+        let request = URL(string: "http://data.fixer.io/api/latest?access_key=\(apiKey.apiExchange)")!
         
         let session = URLSession(configuration: .default)
         

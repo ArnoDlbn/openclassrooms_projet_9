@@ -29,6 +29,8 @@
 		510613B424221BF60016F002 /* Translate.json in Resources */ = {isa = PBXBuildFile; fileRef = 510613B324221BF60016F002 /* Translate.json */; };
 		510613B624221D5A0016F002 /* FakeResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510613B524221D5A0016F002 /* FakeResponseData.swift */; };
 		510613B8242227D00016F002 /* URLSessionFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510613B7242227D00016F002 /* URLSessionFake.swift */; };
+		515D5888242A6A07008DF2DB /* ApiKeyExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515D5887242A6A07008DF2DB /* ApiKeyExtractor.swift */; };
+		515D588A242A6F3F008DF2DB /* ApiKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 515D5889242A6F3F008DF2DB /* ApiKeys.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +79,8 @@
 		510613B324221BF60016F002 /* Translate.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = Translate.json; path = ../../../../../../../../../Documents/Translate.json; sourceTree = "<group>"; };
 		510613B524221D5A0016F002 /* FakeResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FakeResponseData.swift; path = ../../../../../../../../../Documents/FakeResponseData.swift; sourceTree = "<group>"; };
 		510613B7242227D00016F002 /* URLSessionFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = URLSessionFake.swift; path = ../../../../../../../../../Documents/URLSessionFake.swift; sourceTree = "<group>"; };
+		515D5887242A6A07008DF2DB /* ApiKeyExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKeyExtractor.swift; sourceTree = "<group>"; };
+		515D5889242A6F3F008DF2DB /* ApiKeys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ApiKeys.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +111,7 @@
 		5101C830239D6BB1004B58DE = {
 			isa = PBXGroup;
 			children = (
+				515D5889242A6F3F008DF2DB /* ApiKeys.plist */,
 				5101C83B239D6BB1004B58DE /* Baluchon */,
 				5101C852239D6BB6004B58DE /* BaluchonTests */,
 				5101C85D239D6BB6004B58DE /* BaluchonUITests */,
@@ -166,6 +171,7 @@
 				5101C88A23A0E44F004B58DE /* Exchange */,
 				5101C88C23A0E45F004B58DE /* Translate */,
 				5101C88B23A0E458004B58DE /* Weather */,
+				515D5887242A6A07008DF2DB /* ApiKeyExtractor.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -332,6 +338,7 @@
 			files = (
 				5101C849239D6BB6004B58DE /* LaunchScreen.storyboard in Resources */,
 				5101C846239D6BB6004B58DE /* Assets.xcassets in Resources */,
+				515D588A242A6F3F008DF2DB /* ApiKeys.plist in Resources */,
 				5101C844239D6BB1004B58DE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -370,6 +377,7 @@
 				5101C86D239D726F004B58DE /* WeatherService.swift in Sources */,
 				5101C83F239D6BB1004B58DE /* SceneDelegate.swift in Sources */,
 				5101C88E23A0E4C2004B58DE /* Exchange.swift in Sources */,
+				515D5888242A6A07008DF2DB /* ApiKeyExtractor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
