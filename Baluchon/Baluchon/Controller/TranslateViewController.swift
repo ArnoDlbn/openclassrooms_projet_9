@@ -29,7 +29,7 @@ class TranslateViewController: UIViewController, UIPickerViewDelegate, UITextFie
 //    }
 //    chooseLanguage.isHidden = true
 //}
-
+    let translate = TranslateService()
 
     @IBOutlet weak var firstLanguage: UIButton!
     @IBOutlet weak var secondLanguage: UIButton!
@@ -48,7 +48,7 @@ class TranslateViewController: UIViewController, UIPickerViewDelegate, UITextFie
         secondLanguage.isSelected = true
     }
     @IBAction func translate(_ sender: Any) {
-        TranslateService.getTranslation(text: firstLanguageText.text!) { (Translate, error) in
+        translate.getTranslation(text: firstLanguageText.text!) { (Translate, error) in
             self.updateView(data: Translate!)
         }
     }

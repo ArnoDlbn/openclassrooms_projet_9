@@ -10,15 +10,15 @@ import Foundation
 
 class ExchangeService {
     
-    static func getExchange(completionHandler: @escaping (ExchangeRate?, Error?) -> Void) {
+    var exchangeSession = URLSession(configuration: .default)
+    
+    func getExchange(completionHandler: @escaping (ExchangeRate?, Error?) -> Void) {
         
         guard let apiKey = ApiKeyExtractor().apiKey else { return }
         
         let request = URL(string: "http://data.fixer.io/api/latest?access_key=\(apiKey.apiExchange)")!
-        
-        let session = URLSession(configuration: .default)
-        
-        let task = session.dataTask(with: request) {(data, response, error) in DispatchQueue.main.async {
+                
+        let task = exchangeSession.dataTask(with: request) {(data, response, error) in DispatchQueue.main.async {
             guard error == nil else {
                 completionHandler(nil, error)
                 return print("PAS BIEN")
@@ -47,7 +47,7 @@ class ExchangeService {
         
     }
 
-    static func convertFrom(label: String) -> String {
+    func convertFrom(label: String) -> String {
         switch label {
         case "Australian Dollar": return "AUD"
         case "Canadian Dollar": return "CAD"
@@ -61,5 +61,10 @@ class ExchangeService {
         }
         return label
     }
+    
+    init(exchangeSession: URLSession = URLSession(configuration: .default)) {
+        self.exchangeSession = exchangeSession
+    }
+    
 }
 

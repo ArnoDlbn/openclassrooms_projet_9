@@ -10,11 +10,11 @@ import Foundation
 
 class TranslateService {
     
-    static let translateUrl = URL(string: "https://translation.googleapis.com/language/translate/v2?")!
-    static var translateSession = URLSession(configuration: .default)
+    let translateUrl = URL(string: "https://translation.googleapis.com/language/translate/v2?")!
+    var translateSession = URLSession(configuration: .default)
     
-    static func getTranslation(text: String, completionHandler: @escaping (Translation?, Error?) -> Void) {
-        guard let request = createTranslateRequest(text: text) else { return }
+    func getTranslation(text: String, completionHandler: @escaping (Translation?, Error?) -> Void) {
+        guard let request = createTranslateRequest(text: text) else { return print("PAS DE KEY") }
 
         let task = translateSession.dataTask(with: request) {(data, response, error) in DispatchQueue.main.async {
                 guard error == nil else {
@@ -44,7 +44,7 @@ class TranslateService {
             task.resume()
         }
 
-    static func createTranslateRequest(text: String) -> URLRequest? {
+    func createTranslateRequest(text: String) -> URLRequest? {
         guard let apiKey = ApiKeyExtractor().apiKey else { return nil }
         var request = URLRequest(url: translateUrl)
         request.httpMethod = "POST"
@@ -55,8 +55,8 @@ class TranslateService {
         return request
     }
     
-    init(translateSession: URLSession) {
-        TranslateService.self.translateSession = translateSession
+    init(translateSession: URLSession = URLSession(configuration: .default)) {
+        self.translateSession = translateSession
     }
     
 }

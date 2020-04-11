@@ -10,25 +10,32 @@ import Foundation
 
 class WeatherService {
     
-    static var weatherSession = URLSession(configuration: .default)
+    enum Error: Swift.Error {
+        case noData
+        case wrongResponse(statusCode: Int?)
+    }
     
-    static func getWeather(city: String, completionHandler: @escaping (CityWeather?, Error?) -> Void) {
-        guard let apiKey = ApiKeyExtractor().apiKey else { return }
+    var weatherSession = URLSession(configuration: .default)
+    
+    func getWeather(city: String, completionHandler: @escaping (CityWeather?, Swift.Error?) -> Void) {
+        guard let apiKey = ApiKeyExtractor().apiKey else { return print("PAS DE KEY") }
         let encodedCity = city.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
         let request = URL(string: "https://api.openweathermap.org/data/2.5/weather?q=\(encodedCity!)&units=metric&appid=\(apiKey.apiWeather)")!
         
-        let task = weatherSession.dataTask(with: request) {(data, response, error) in DispatchQueue.main.async {
+        let task = weatherSession.dataTask(with: request) {(data, rresponse, error) in DispatchQueue.main.async {
             guard error == nil else {
                 completionHandler(nil, error)
                 return print("PAS BIEN")
             }
             
-            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                completionHandler(nil, nil)
+            guard let response = rresponse as? HTTPURLResponse, response.statusCode == 200 else {
+                completionHandler(nil, Error.wrongResponse(statusCode: (rresponse as? HTTPURLResponse)?.statusCode))
                 return print("PAS BIEN 2")
             }
             
             guard let data = data else {
+                completionHandler(nil, Error.noData)
+            
                 return print("NO DATA")
             }
             
@@ -45,8 +52,8 @@ class WeatherService {
         task.resume()
     }
     
-    init(weatherSession: URLSession) {
-        WeatherService.self.weatherSession = weatherSession
+    init(weatherSession: URLSession = URLSession(configuration: .default)) {
+        self.weatherSession = weatherSession
     }
     
 }

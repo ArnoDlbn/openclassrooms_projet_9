@@ -29,7 +29,8 @@ class WeatherViewController: UIViewController, UIPickerViewDelegate, UITextField
 //    }
 //    chooseLocation.isHidden = true
 //}
-    
+    let weather = WeatherService()
+
     @IBOutlet weak var firstLocation: UIButton!
     @IBOutlet weak var secondLocation: UIButton!
     @IBOutlet weak var infoLocOne: UIStackView!
@@ -69,11 +70,10 @@ class WeatherViewController: UIViewController, UIPickerViewDelegate, UITextField
     }
     
     private func updateWeather() {
-        
-        WeatherService.getWeather(city: firstLocation.title(for: .normal)!, completionHandler: { (weather, error) in
+        weather.getWeather(city: firstLocation.title(for: .normal)!, completionHandler: { (weather, error) in
             self.showInfoLocOne(data: weather!)
         })
-        WeatherService.getWeather(city: secondLocation.title(for: .normal)!, completionHandler: { (weather, error) in
+        weather.getWeather(city: secondLocation.title(for: .normal)!, completionHandler: { (weather, error) in
             self.showInfoLocTwo(data: weather!)
         })
         

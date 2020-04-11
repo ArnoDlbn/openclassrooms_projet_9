@@ -30,6 +30,8 @@ class ExchangeViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         chooseCurrency.isHidden = true
     }
 
+    let exchange = ExchangeService()
+    
     @IBOutlet weak var firstCurrency: UIButton!
     @IBOutlet weak var secondCurrency: UIButton!
     @IBOutlet weak var firstCurrencyExchange: UITextField!
@@ -54,14 +56,14 @@ class ExchangeViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         secondCurrency.isSelected = true
     }
     @IBAction func exchange(_ sender: UIButton) {
-        ExchangeService.getExchange(completionHandler: { (rate, error) in
+        exchange.getExchange(completionHandler: { (rate, error) in
             self.calculate(data: rate!)
         })
     }
     
     func calculate (data: ExchangeRate) {
-        let currencyOne = ExchangeService.convertFrom(label: firstCurrency.title(for: .normal)!)
-        let currencyTwo = ExchangeService.convertFrom(label: secondCurrency.title(for: .normal)!)
+        let currencyOne = exchange.convertFrom(label: firstCurrency.title(for: .normal)!)
+        let currencyTwo = exchange.convertFrom(label: secondCurrency.title(for: .normal)!)
         if currencyOne == data.base || currencyTwo == data.base {
 
             if currencyOne == data.base {
