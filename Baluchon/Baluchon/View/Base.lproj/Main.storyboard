@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="EjJ-Xa-Q1l">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="EjJ-Xa-Q1l">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -73,10 +73,10 @@
                                     </textField>
                                 </subviews>
                             </stackView>
-                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7jT-8B-YCh">
-                                <rect key="frame" x="0.0" y="340" width="414" height="216"/>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Dwn-G9-3Bc">
+                                <rect key="frame" x="364" y="54" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </pickerView>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -92,11 +92,12 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Translation" image="text.bubble.fill" catalog="system" id="yQR-6X-mmG"/>
                     <connections>
-                        <outlet property="chooseLanguage" destination="7jT-8B-YCh" id="slG-bW-C6y"/>
                         <outlet property="firstLanguage" destination="xXF-P0-U7f" id="7c9-jz-NtT"/>
                         <outlet property="firstLanguageText" destination="xX3-K9-bJg" id="yKz-Mb-UQS"/>
                         <outlet property="secondLanguage" destination="vVf-VQ-Y2h" id="lgf-ze-60f"/>
                         <outlet property="secondLanguageText" destination="2ZL-NH-wXE" id="dLj-Tl-xTa"/>
+                        <outlet property="translateActivityIndicator" destination="Dwn-G9-3Bc" id="hDA-XR-YBN"/>
+                        <outlet property="update" destination="T5o-G5-Bae" id="4yV-wt-LOl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f6S-0a-MDU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -208,10 +209,10 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7fq-gv-fmb">
-                                <rect key="frame" x="0.0" y="340" width="414" height="216"/>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="zq5-gq-wmP">
+                                <rect key="frame" x="364" y="54" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </pickerView>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -228,13 +229,14 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Weather" image="cloud.sun.rain.fill" catalog="system" id="gNv-6q-eOb"/>
                     <connections>
-                        <outlet property="chooseLocation" destination="7fq-gv-fmb" id="3hn-4A-9N3"/>
                         <outlet property="firstLocation" destination="8xS-vg-O1R" id="e2T-Jx-Rwp"/>
+                        <outlet property="forecast" destination="kgX-sC-Yyw" id="j5V-ns-Vfo"/>
                         <outlet property="infoLocOne" destination="daW-xE-CH6" id="Abp-9X-Gtc"/>
                         <outlet property="infoLocTwo" destination="PM0-KT-fme" id="NGe-Dt-0db"/>
                         <outlet property="secondLocation" destination="ixl-Qg-hmu" id="srJ-c3-7TN"/>
                         <outlet property="tempLocOne" destination="Nth-lv-6BX" id="ccy-0w-MP1"/>
                         <outlet property="tempLocTwo" destination="52n-nk-iw7" id="ulA-c6-WjB"/>
+                        <outlet property="weatherActivityIndicator" destination="zq5-gq-wmP" id="JJb-am-Nfz"/>
                         <outlet property="weatherLocOne" destination="gJ8-Rl-Ndw" id="Fdg-1x-hgh"/>
                         <outlet property="weatherLocTwo" destination="Gnu-HY-yg3" id="fXW-yz-9ah"/>
                         <outlet property="windLocOne" destination="1ux-Iw-sTf" id="Npq-ea-Shm"/>
@@ -272,7 +274,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D5u-WR-BVo">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D5u-WR-BVo" userLabel="Update">
                                 <rect key="frame" x="354" y="44.5" width="40" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
@@ -339,6 +341,10 @@
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L9h-pa-8Dd">
                                 <rect key="frame" x="0.0" y="340" width="414" height="216"/>
                             </pickerView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="H89-im-3YM" userLabel="Exchange Activity Indicator">
+                                <rect key="frame" x="364" y="54" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -360,10 +366,12 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="chooseCurrency" destination="L9h-pa-8Dd" id="Jk2-ht-V5p"/>
+                        <outlet property="exchangeActivityIndicator" destination="H89-im-3YM" id="EDC-4W-qQT"/>
                         <outlet property="firstCurrency" destination="ccb-ze-YSa" id="ABP-Ss-TtW"/>
                         <outlet property="firstCurrencyExchange" destination="AeS-wm-DYW" id="6GU-YH-msy"/>
                         <outlet property="secondCurrency" destination="Gm4-a7-weh" id="dOe-Gl-xig"/>
                         <outlet property="secondCurrencyExchange" destination="rgF-vU-FGh" id="qEl-Wu-hkk"/>
+                        <outlet property="update" destination="D5u-WR-BVo" id="r2Z-gH-8gO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mg0-KX-lKm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -372,11 +380,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="arrow.2.circlepath.circle" catalog="system" width="64" height="60"/>
-        <image name="arrow.right.arrow.left.circle" catalog="system" width="64" height="60"/>
-        <image name="arrow.right.arrow.left.square" catalog="system" width="64" height="56"/>
-        <image name="cloud.sun.rain.fill" catalog="system" width="64" height="58"/>
-        <image name="eurosign.circle.fill" catalog="system" width="64" height="60"/>
-        <image name="text.bubble.fill" catalog="system" width="64" height="54"/>
+        <image name="arrow.2.circlepath.circle" catalog="system" width="128" height="121"/>
+        <image name="arrow.right.arrow.left.circle" catalog="system" width="128" height="121"/>
+        <image name="arrow.right.arrow.left.square" catalog="system" width="128" height="114"/>
+        <image name="cloud.sun.rain.fill" catalog="system" width="128" height="118"/>
+        <image name="eurosign.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="text.bubble.fill" catalog="system" width="128" height="110"/>
     </resources>
 </document>

@@ -8,6 +8,7 @@
 
 import Foundation
 
+// structure to manage data
 struct ExchangeRate: Decodable {
     let base: String
     let rates: [String: Double]

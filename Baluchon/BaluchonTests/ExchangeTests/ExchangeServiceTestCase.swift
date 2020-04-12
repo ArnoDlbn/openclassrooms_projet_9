@@ -13,23 +13,43 @@ class ExchangeServiceTestCase: XCTestCase {
     
     func testGetExchangeShouldPostFailedCallbackIfError() {
         let exchange = ExchangeService(exchangeSession: URLSessionFake(data: nil, response: nil, error: FakeResponseData.error))
+        
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         
-        exchange.getExchange() { (exchange, success) in
-            XCTAssertNotNil(success)
+        exchange.getExchange() { (exchange, error) in
             XCTAssertNil(exchange)
+            XCTAssertNotNil(error)
+            guard let error = error as? ErrorCases else {
+                XCTAssert(false)
+                return
+            }
+            if case ErrorCases.failure = error {
+                XCTAssert(true)
+            } else {
+                XCTAssert(false)
+            }
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 0.01)
     }
     
     func testGetExchangeShouldPostFailedCallbackIfNoData() {
-        let exchange = ExchangeService(exchangeSession: URLSessionFake(data: nil, response: nil, error: nil))
+        let exchange = ExchangeService(exchangeSession: URLSessionFake(data: nil, response: FakeResponseData.responseOK, error: nil))
+       
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         
-        exchange.getExchange() { (exchange, success) in
+        exchange.getExchange() { (exchange, error) in
             XCTAssertNil(exchange)
-            XCTAssertNil(success)
+            XCTAssertNotNil(error)
+            guard let error = error as? ErrorCases else {
+                XCTAssert(false)
+                return
+            }
+            if case ErrorCases.noData = error {
+                XCTAssert(true)
+            } else {
+                XCTAssert(false)
+            }
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 0.01)
@@ -37,11 +57,21 @@ class ExchangeServiceTestCase: XCTestCase {
     
     func testGetExchangeShouldPostFailedCallbackIncorrectResponse() {
         let exchange = ExchangeService(exchangeSession: URLSessionFake(data: FakeResponseData.exchangeCorrectData, response: FakeResponseData.responseKO, error: nil))
+        
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         
-        exchange.getExchange() { (exchange, success) in
-            XCTAssertNil(success)
+        exchange.getExchange() { (exchange, error) in
             XCTAssertNil(exchange)
+            XCTAssertNotNil(error)
+            guard let error = error as? ErrorCases else {
+                XCTAssert(false)
+                return
+            }
+            if case ErrorCases.wrongResponse(statusCode: 500) = error {
+                XCTAssert(true)
+            } else {
+                XCTAssert(false)
+            }
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 0.01)
@@ -49,11 +79,21 @@ class ExchangeServiceTestCase: XCTestCase {
     
     func testGetExchangeShouldPostFailedCallbackIncorrectData() {
         let exchange = ExchangeService(exchangeSession: URLSessionFake(data: FakeResponseData.IncorrectData, response: FakeResponseData.responseOK, error: nil))
+        
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         
-        exchange.getExchange() { (exchange, success) in
-            XCTAssertNotNil(success)
+        exchange.getExchange() { (exchange, error) in
             XCTAssertNil(exchange)
+            XCTAssertNotNil(error)
+            guard let error = error as? ErrorCases else {
+                XCTAssert(false)
+                return
+            }
+            if case ErrorCases.errorDecode = error {
+                XCTAssert(true)
+            } else {
+                XCTAssert(false)
+            }
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 0.01)
@@ -61,6 +101,7 @@ class ExchangeServiceTestCase: XCTestCase {
     
     func testGetExchangeShouldPostSuccessCallbackIfNoErrorAndCorrectData() {
         let exchange = ExchangeService(exchangeSession: URLSessionFake(data: FakeResponseData.exchangeCorrectData, response: FakeResponseData.responseOK, error: nil))
+        
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         
         exchange.getExchange() { (exchange, success) in
@@ -99,27 +140,5 @@ class ExchangeServiceTestCase: XCTestCase {
         
         result = exchange.convertFrom(label: "United States Dollar")
         XCTAssertEqual(result, "USD")
-
     }
-
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
 }

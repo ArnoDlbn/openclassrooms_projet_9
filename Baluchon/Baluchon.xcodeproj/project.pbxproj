@@ -33,6 +33,8 @@
 		515D5888242A6A07008DF2DB /* ApiKeyExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515D5887242A6A07008DF2DB /* ApiKeyExtractor.swift */; };
 		515D588A242A6F3F008DF2DB /* ApiKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 515D5889242A6F3F008DF2DB /* ApiKeys.plist */; };
 		51AF61912442129C002696D5 /* ExchangeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AF61902442129C002696D5 /* ExchangeTest.swift */; };
+		51E26CCF244298DA0076401C /* ErrorCases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E26CCE244298DA0076401C /* ErrorCases.swift */; };
+		51E26CD1244299090076401C /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E26CD0244299090076401C /* UIViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +87,8 @@
 		515D5887242A6A07008DF2DB /* ApiKeyExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKeyExtractor.swift; sourceTree = "<group>"; };
 		515D5889242A6F3F008DF2DB /* ApiKeys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ApiKeys.plist; sourceTree = "<group>"; };
 		51AF61902442129C002696D5 /* ExchangeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeTest.swift; sourceTree = "<group>"; };
+		51E26CCE244298DA0076401C /* ErrorCases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorCases.swift; sourceTree = "<group>"; };
+		51E26CD0244299090076401C /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +142,7 @@
 			children = (
 				5101C84A239D6BB6004B58DE /* Info.plist */,
 				5101C88723A0E2C0004B58DE /* Controller */,
+				51E26CCD244298B20076401C /* Extension */,
 				5101C88623A0E29F004B58DE /* Model */,
 				5101C88923A0E409004B58DE /* Supporting files */,
 				5101C88823A0E344004B58DE /* View */,
@@ -260,6 +265,15 @@
 				5128D48C242B6B130042A6EE /* WeatherServiceTestCase.swift */,
 			);
 			path = WeatherTests;
+			sourceTree = "<group>";
+		};
+		51E26CCD244298B20076401C /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				51E26CCE244298DA0076401C /* ErrorCases.swift */,
+				51E26CD0244299090076401C /* UIViewController.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -397,6 +411,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				51E26CD1244299090076401C /* UIViewController.swift in Sources */,
 				5101C871239D73F7004B58DE /* TranslateService.swift in Sources */,
 				5101C885239E912C004B58DE /* TranslateViewController.swift in Sources */,
 				5101C883239E9110004B58DE /* WeatherViewController.swift in Sources */,
@@ -406,6 +421,7 @@
 				5101C873239D742C004B58DE /* ExchangeService.swift in Sources */,
 				5101C83D239D6BB1004B58DE /* AppDelegate.swift in Sources */,
 				5101C86D239D726F004B58DE /* WeatherService.swift in Sources */,
+				51E26CCF244298DA0076401C /* ErrorCases.swift in Sources */,
 				5101C83F239D6BB1004B58DE /* SceneDelegate.swift in Sources */,
 				5101C88E23A0E4C2004B58DE /* Exchange.swift in Sources */,
 				515D5888242A6A07008DF2DB /* ApiKeyExtractor.swift in Sources */,

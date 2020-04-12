@@ -8,6 +8,7 @@
 
 import Foundation
 
+// structures to manage data
 struct CityWeather: Decodable {
     let weather: [Weather]
     let main: Main

@@ -10,6 +10,8 @@ import Foundation
 
 class FakeResponseData {
     
+    // MARK: - Data
+    
     static var exchangeCorrectData: Data? {
         let bundle = Bundle(for: FakeResponseData.self)
         let url = bundle.url(forResource: "Exchange", withExtension: "json")!
@@ -30,6 +32,8 @@ class FakeResponseData {
     
     static let IncorrectData = "erreur".data(using: .utf8)
     
+    // MARK: - Response
+    
     static let responseOK = HTTPURLResponse(
         url: URL(string: "https://openclassrooms.com")!,
         statusCode: 200, httpVersion: nil, headerFields: [:])!
@@ -37,6 +41,8 @@ class FakeResponseData {
     static let responseKO = HTTPURLResponse(
         url: URL(string: "https://openclassrooms.com")!,
         statusCode: 500, httpVersion: nil, headerFields: [:])!
+    
+    // MARK: - Error
     
     class ServiceError: Error {}
     static let error = ServiceError()

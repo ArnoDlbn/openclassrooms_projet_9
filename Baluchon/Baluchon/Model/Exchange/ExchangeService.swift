@@ -10,43 +10,55 @@ import Foundation
 
 class ExchangeService {
     
-    var exchangeSession = URLSession(configuration: .default)
+    // MARK: - Properties
     
+    // URLSession
+    var exchangeSession = URLSession(configuration: .default)
+    // URLSessionDataTask
+    var task: URLSessionDataTask?
+    // initialize URLSession
+    init(exchangeSession: URLSession = URLSession(configuration: .default)) {
+        self.exchangeSession = exchangeSession
+    }
+    
+    // MARK: - Methods
+    
+    // send a request to Fixer API and return this response
     func getExchange(completionHandler: @escaping (ExchangeRate?, Error?) -> Void) {
-        
+        // get API Key
         guard let apiKey = ApiKeyExtractor().apiKey else { return }
-        
-        let request = URL(string: "http://data.fixer.io/api/latest?access_key=\(apiKey.apiExchange)")!
-                
-        let task = exchangeSession.dataTask(with: request) {(data, response, error) in DispatchQueue.main.async {
+        // call
+        guard let request = URL(string: "http://data.fixer.io/api/latest?access_key=\(apiKey.apiExchange)") else { return }
+        task?.cancel()
+        task = exchangeSession.dataTask(with: request) {(data, rresponse, error) in DispatchQueue.main.async {
+            // check error
             guard error == nil else {
-                completionHandler(nil, error)
-                return print("PAS BIEN")
+                completionHandler(nil, ErrorCases.failure)
+                return
             }
-            
-            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                completionHandler(nil, nil)
-                return print("PAS BIEN 2")
+            // check status response
+            guard let response = rresponse as? HTTPURLResponse, response.statusCode == 200 else {
+                completionHandler(nil, ErrorCases.wrongResponse(statusCode: (rresponse as? HTTPURLResponse)?.statusCode))
+                return
             }
-            
+            // check data
             guard let data = data else {
-                return print("NO DATA")
+                completionHandler(nil, ErrorCases.noData)
+                return
             }
-            
+            // check response JSON
             do {
                 let responseJSON = try JSONDecoder().decode(ExchangeRate.self, from: data)
                 completionHandler(responseJSON, nil)
-                print(responseJSON)
             } catch {
-                completionHandler(nil, error)
-                print(error)
+                completionHandler(nil, ErrorCases.errorDecode)
             }
             }
         }
-        task.resume()
-        
+        task?.resume()
     }
 
+    // switch currency name to his international symbol
     func convertFrom(label: String) -> String {
         switch label {
         case "Australian Dollar": return "AUD"
@@ -61,10 +73,4 @@ class ExchangeService {
         }
         return label
     }
-    
-    init(exchangeSession: URLSession = URLSession(configuration: .default)) {
-        self.exchangeSession = exchangeSession
-    }
-    
 }
-

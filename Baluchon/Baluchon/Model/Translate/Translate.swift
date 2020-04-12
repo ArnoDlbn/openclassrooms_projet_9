@@ -8,6 +8,7 @@
 
 import Foundation
 
+// structures to manage data
 struct Translation: Decodable {
     let data: Data
 }
