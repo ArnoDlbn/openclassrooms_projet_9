@@ -12,10 +12,6 @@ class WeatherViewController: UIViewController {
 
     // MARK: - Properties
     
-    // stored data for pickerView
-//    var chooseLocationData: [String] = ["My location", "Choose location"]
-    // store picked locations
-//    var locations = [String]()
     // instance of the WeatherService class
     let weather = WeatherService()
 
@@ -33,27 +29,16 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var windLocTwo: UILabel!
     @IBOutlet weak var weatherActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var forecast: UIButton!
-    //    @IBOutlet weak var chooseLocation: UIPickerView!
     
     // MARK: - Actions
     
-    // choose first location
-//    @IBAction func locationOne(_ sender: UIButton) {
-//        chooseLocation.isHidden = false
-//        firstLocation.isSelected = true
-//    }
-    // choose second location
-//    @IBAction func locationTwo(_ sender: UIButton) {
-//        chooseLocation.isHidden = false
-//        secondLocation.isSelected = true
-//    }
     // check if there is value and forecast weather
     @IBAction func forecastWeather(_ sender: UIButton) {
-//        guard firstLocation.title(for: .normal) != nil, secondLocation.title(for: .normal) != nil else {
-//            // send an alert to enter a value to convert
-//            alert(title: "Erreur", message: "Entrez une ville !")
-//            return
-//        }
+        guard firstLocation.title(for: .normal) != nil, secondLocation.title(for: .normal) != nil else {
+            // send an alert to enter a value to convert
+            alert(title: "Erreur", message: "Entrez une ville !")
+            return
+        }
         updateWeather()
     }
     
@@ -64,9 +49,6 @@ class WeatherViewController: UIViewController {
         weatherActivityIndicator.isHidden = true
         firstLocation.setTitle("Paris", for: .normal)
         secondLocation.setTitle("New York", for: .normal)
-//        chooseLocation.isHidden = true
-//        self.chooseLocation.delegate = self
-//        self.chooseLocation.dataSource = self
     }
     
     // MARK: - Methods
@@ -102,41 +84,3 @@ class WeatherViewController: UIViewController {
         windLocTwo.text = "\(data.wind.speed)" + "km/h"
     }
 }
-
-//  // MARK: - Extension for pickerView
-//
-//extension WeatherViewController : UIPickerViewDelegate, UIPickerViewDataSource {
-//    method to return the number's colum of the UIPickerView
-//    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-//        return 1
-//    }
-//    method to return the number of lines in the UIPickerView
-//
-//    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-//        return chooseLocationData.count
-//    }
-//    method to fill the UIPickerView with stored data
-//
-//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-//        return chooseLocationData[row]
-//    }
-//    method to returns the value corresponding to the UIPickerView
-//    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-//        if firstLocation.state == .selected { firstLocation.setTitle(chooseLocationData[row], for: .normal)
-//            firstLocation.isSelected = false
-//        }
-//        if secondLocation.state == .selected {
-//            secondLocation.setTitle(chooseLocationData[row], for: .normal)
-//            secondLocation.isSelected = false
-//        }
-//        chooseLocation.isHidden = true
-//}
-
-//    // MARK: - Extension to dismiss Keyboard
-//
-//extension WeatherViewController: UITextFieldDelegate {
-//    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
-//        firstLocation.resignFirstResponder()
-//        secondLocation.resignFirstResponder()
-//    }
-//}
