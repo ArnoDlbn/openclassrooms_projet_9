@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TranslateViewController: UIViewController, UIPickerViewDelegate, UITextFieldDelegate {
+class TranslateViewController: UIViewController {
 
 
     // MARK: - Properties
@@ -55,28 +55,6 @@ class TranslateViewController: UIViewController, UIPickerViewDelegate, UITextFie
         updatetranslation()
     }
     
-    // MARK: - PickerView Life cycle
-    
-//    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-//        return 1
-//    }
-//    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-//        return chooseLanguageData.count
-//    }
-//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-//        return chooseLanguageData[row]
-//    }
-//    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-//        if firstLanguage.state == .selected { firstLanguage.setTitle(chooseLanguageData[row], for: .normal)
-//            firstLanguage.isSelected = false
-//        }
-//        if secondLanguage.state == .selected {
-//        secondLanguage.setTitle(chooseLanguageData[row], for: .normal)
-//            secondLanguage.isSelected = false
-//        }
-//        chooseLanguage.isHidden = true
-//    }
-    
     // MARK: - View Life cycle and set languages
     
     override func viewDidLoad() {
@@ -108,3 +86,35 @@ class TranslateViewController: UIViewController, UIPickerViewDelegate, UITextFie
         secondLanguageText.text = data.data.translations[0].translatedText
     }
 }
+
+// MARK: - Extension for pickerView
+    
+//extension TranslateViewController : UIPickerViewDelegate, UIPickerViewDataSource {
+//    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+//        return 1
+//    }
+//    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+//        return chooseLanguageData.count
+//    }
+//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+//        return chooseLanguageData[row]
+//    }
+//    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+//        if firstLanguage.state == .selected { firstLanguage.setTitle(chooseLanguageData[row], for: .normal)
+//            firstLanguage.isSelected = false
+//        }
+//        if secondLanguage.state == .selected {
+//        secondLanguage.setTitle(chooseLanguageData[row], for: .normal)
+//            secondLanguage.isSelected = false
+//        }
+//        chooseLanguage.isHidden = true
+//    }
+    
+    //MARK: - Extension to dismiss Keyboard
+
+extension TranslateViewController: UITextFieldDelegate {
+    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
+        firstLanguageText.resignFirstResponder()
+    }
+}
+

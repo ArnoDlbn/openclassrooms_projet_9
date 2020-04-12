@@ -103,9 +103,9 @@ class WeatherViewController: UIViewController {
     }
 }
 
-// MARK: - Extension for pickerView
+//  // MARK: - Extension for pickerView
 //
-//extension ExchangeViewController : UIPickerViewDelegate, UIPickerViewDataSource {
+//extension WeatherViewController : UIPickerViewDelegate, UIPickerViewDataSource {
 //    method to return the number's colum of the UIPickerView
 //    func numberOfComponents(in pickerView: UIPickerView) -> Int {
 //        return 1
@@ -131,7 +131,8 @@ class WeatherViewController: UIViewController {
 //        }
 //        chooseLocation.isHidden = true
 //}
-// MARK: - Extension to dismiss Keyboard
+
+//    // MARK: - Extension to dismiss Keyboard
 //
 //extension WeatherViewController: UITextFieldDelegate {
 //    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
